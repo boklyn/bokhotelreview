@@ -1,11 +1,14 @@
 <?php
+
 /*
+
 Plugin Name: Sponsored Systems for AudraCherryPickings.com
 Description: Sponsored Systems code changes for AudraCherryPickings.com
 Plugin URI: http://boklyn.net/
 Version: 1.0
 Author: boklyn wong
 Author URI: http://boklyn.net/
+Text Domain: sponsored-system
 */
 /* Start Adding Functions Below this Line */
 // Creating the widget 
@@ -13,7 +16,7 @@ class Bok_Review {
 	
 	/** Singleton *************************************************************/
 	
-
+	private static $instance;
 	/**
 	 * Constants
 	 */
@@ -33,10 +36,10 @@ class Bok_Review {
 	public static function instance() {
 	
 		if ( ! isset( self::$instance )
-				&& ! ( self::$instance instanceof Bok_Review ) ) {
-				
-			self::$instance = new Bok_Review;
-
+				&& ! ( self::$instance instanceof Bok_Review ) ) {					
+			self::$instance = new Bok_Review;		
+			self::$instance->includes();	
+			add_action( 'init', array( self::$instance, 'load_textdomain' ) );
 		}	
 		return Bok_Review::$instance;
 	}
@@ -106,6 +109,20 @@ class Bok_Review {
 	}
 	
 
+	/**
+	 * Includes files
+	 */
+	function includes() {
+		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'widgets.php';	
+		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'class-utils.php';	
+	}
+	
+	/**
+	 * Loads plugin text domain
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'sponsored-system', false, dirname( plugin_basename( __FILE__) ) . DIRECTORY_SEPARATOR . 'languages' . DIRECTORY_SEPARATOR );
+	}
 
 }
 
@@ -125,13 +142,13 @@ register_activation_hook( __FILE__, 'br_activate_plugin' );
 /**
  * Uninstall plugin
  */
-function mr_uninstall_plugin() {
+function br_uninstall_plugin() {
 	
 	if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 		Bok_Review::uninstall_plugin();
 	}
 }
-register_uninstall_hook( __FILE__, 'mr_uninstall_plugin' );
+register_uninstall_hook( __FILE__, 'br_uninstall_plugin' );
 
 /*
  * Instantiate plugin main class
@@ -139,6 +156,6 @@ register_uninstall_hook( __FILE__, 'mr_uninstall_plugin' );
 function mr_Bok_Review() {
 	return Bok_Review::instance();
 }
-//mr_Bok_Review();
+mr_Bok_Review();
 /* Stop Adding Functions Below this Line */
 ?>
