@@ -2,9 +2,9 @@
 echo "
 			<tr>
 				<td  style=\"text-align:center;vertical-align:middle;\">
-				<div class=\"review-total-wrapper\">
-				<span class=\"review-total-box\">";
-				echo $rating_result['percentage_result'];
+				<div class=\"bokreview-total-wrapper\">
+				<span class=\"bokreview-total-box\">";
+				echo $rating_result['star_result'];
 				echo"</span>
 				</div>
 				</td>
@@ -14,7 +14,7 @@ echo "
 				$template_part_name = 'custom-star-images';
 			}
 		
-			mr_get_template_part( 'bokrating-result', $template_part_name, true, array( 
+			bok_get_template_part( 'bokrating-result', $template_part_name, true, array( 
 				'max_stars' => $max_stars, 
 				'star_result' => $star_result,
 				'icon_classes' => $icon_classes,

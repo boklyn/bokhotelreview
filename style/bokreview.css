@@ -1,0 +1,23 @@
+.bokreview-total-wrapper {
+    float: right;
+    margin: 0;
+    margin-right: 0;
+    padding-right: 0;
+    position: relative;
+    box-sizing: border-box;
+    margin: 10px 15px;
+}
+.bokreview-total-wrapper span.bokreview-total-box {
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}

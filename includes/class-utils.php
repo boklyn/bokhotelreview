@@ -5,7 +5,7 @@
  * 
  * @author dpowney
  */
-class MR_Utils {
+class Bok_Core {
 	
 	/** 
 	 * Gets the client ip address
@@ -53,7 +53,7 @@ class MR_Utils {
 			$url .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		}
 	
-		return MR_Utils::normalize_url( $url );
+		return Bok_Core::normalize_url( $url );
 	}
 	
 	/**
@@ -161,7 +161,7 @@ class MR_Utils {
 		}
 	
 		// Remove some query params which we do not want
-		$url = MR_Utils::remove_query_string_params( $url, array() );
+		$url = Bok_Core::remove_query_string_params( $url, array() );
 	
 		return $url;
 	}
@@ -248,13 +248,13 @@ class MR_Utils {
 		$general_settings = (array) get_option( Multi_Rating::GENERAL_SETTINGS );
 		
 		$hours = $general_settings[Multi_Rating::SAVE_RATING_RESTRICTION_HOURS_OPTION];
-		$ip_address = MR_Utils::get_ip_address();
+		$ip_address = Bok_Core::get_ip_address();
 		$save_rating_restriction_types = $general_settings[Multi_Rating::SAVE_RATING_RESTRICTION_TYPES_OPTION];
 		
 		foreach ( $save_rating_restriction_types as $save_rating_restriction_type ) {
 			
-			if ( ( $save_rating_restriction_type == 'ip_address' && MR_Utils::ip_address_validation_check( $ip_address, $post_id, $hours ) == true )
-					|| ( $save_rating_restriction_type == 'cookie' && MR_Utils::cookie_validation_check( $post_id ) == true ) ) {
+			if ( ( $save_rating_restriction_type == 'ip_address' && Bok_Core::ip_address_validation_check( $ip_address, $post_id, $hours ) == true )
+					|| ( $save_rating_restriction_type == 'cookie' && Bok_Core::cookie_validation_check( $post_id ) == true ) ) {
 					
 				$custom_text_settings = (array) get_option( Multi_Rating::CUSTOM_TEXT_SETTINGS );
 				
@@ -570,26 +570,26 @@ class MR_Utils {
 		if ( $sort_by == 'highest_rated' ) {
 				
 			if ( $result_type == Multi_Rating::SCORE_RESULT_TYPE) {
-				uasort( $rating_results, array( 'MR_Utils' , 'sort_highest_rated_by_score_result_type' ) );
+				uasort( $rating_results, array( 'Bok_Core' , 'sort_highest_rated_by_score_result_type' ) );
 			} else {
-				uasort( $rating_results, array( 'MR_Utils' , 'sort_highest_rated_by_percentage_result_type' ) );
+				uasort( $rating_results, array( 'Bok_Core' , 'sort_highest_rated_by_percentage_result_type' ) );
 			}
 				
 		} else if ( $sort_by == 'lowest_rated' ) {
 				
 			if ( $result_type == Multi_Rating::SCORE_RESULT_TYPE) {
-				uasort( $rating_results, array( 'MR_Utils' , 'sort_lowest_rated_by_score_result_type' ) );
+				uasort( $rating_results, array( 'Bok_Core' , 'sort_lowest_rated_by_score_result_type' ) );
 			} else {
-				uasort( $rating_results, array( 'MR_Utils' , 'sort_lowest_rated_by_percentage_result_type' ) );
+				uasort( $rating_results, array( 'Bok_Core' , 'sort_lowest_rated_by_percentage_result_type' ) );
 			}
 				
 		} else if ( $sort_by == 'most_entries' ) {
 				
-			uasort( $rating_results, array( 'MR_Utils' , 'sort_most_entries' ) );
+			uasort( $rating_results, array( 'Bok_Core' , 'sort_most_entries' ) );
 				
 		} else if ( $sort_by == 'most_recent' ) {
 				
-			uasort( $rating_results, array( 'MR_Utils' , 'sort_most_recent_by_entry_date' ) );
+			uasort( $rating_results, array( 'Bok_Core' , 'sort_most_recent_by_entry_date' ) );
 				
 		}
 	

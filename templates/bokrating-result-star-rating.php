@@ -3,14 +3,16 @@
  * Rating result star rating template
  */
 ?>
+	<table>
 <span class="mr-star-rating">
 	<?php
     $index = 0;
-	echo $max_stars;
     for ( $index; $index < $max_stars; $index++ ) {
-    		
+    ?>
+	<tr>
+	<td>
+	<?php
 		$class = $icon_classes['star_full'];
-	     echo $star_result ;
 	    if ( $star_result < $index+1 ) {
 	    		
 	    	$diff = $star_result - $index;
@@ -34,11 +36,13 @@
 	   			
 	    ?>
 	    <i class="<?php echo $class; ?>"></i>
+		</td>
+		</tr>
 	    <?php
-    }
-    			
+    }    			
 ?>
 </span>
+	</table>
 <?php
 /*
 <span class="star-result">

@@ -30,6 +30,18 @@ class Bok_Review {
 	TABLE_WORDPRESS								= 'wp_posts',
 	RATING_ITEM_TBL_NAME 						= 'mr_rating_item',
 	
+	// settings
+	CUSTOM_TEXT_SETTINGS 						= 'mr_custom_text_settings',
+	STYLE_SETTINGS 								= 'mr_style_settings',
+	POSITION_SETTINGS 							= 'mr_position_settings',
+	GENERAL_SETTINGS 							= 'mr_general_settings',
+	FONT_AWESOME_VERSION_OPTION					= 'mr_font_awesome_version',
+	USE_CUSTOM_STAR_IMAGES						= 'mr_use_custom_star_images',
+	CUSTOM_STAR_IMAGE_WIDTH						= 'mr_custom_star_img_width',
+	CUSTOM_STAR_IMAGE_HEIGHT					= 'mr_custom_star_img_height',
+	NO_RATING_RESULTS_TEXT_OPTION				= 'mr_no_rating_results_text',
+	STAR_RATING_RESULT_TYPE						= 'star_rating',
+	
 	TABLE_BOKREVIEWCATS							= 'bok_reviewcats';
 	// settings
 
@@ -40,10 +52,16 @@ class Bok_Review {
 			self::$instance = new Bok_Review;		
 			self::$instance->includes();	
 			add_action( 'init', array( self::$instance, 'load_textdomain' ) );
+			add_action( 'wp_head', array( self::$instance, 'load_css') );
 		}	
 		return Bok_Review::$instance;
 	}
 
+
+	public function load_css() {	
+		wp_enqueue_style( 'mr-frontend-style', plugins_url( 'style' . DIRECTORY_SEPARATOR . 'bokreview.css', __FILE__ ) );
+
+	}
 	
 	/**
 	 * Activates the plugin
@@ -115,6 +133,8 @@ class Bok_Review {
 	function includes() {
 		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'widgets.php';	
 		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'class-utils.php';	
+		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'class-api.php';
+		require dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'template-functions.php';
 	}
 	
 	/**
