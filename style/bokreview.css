@@ -21,3 +21,19 @@
     width: 100%;
     box-sizing: border-box;
 }
+table.bokcard {
+	border-width: 1px;
+	border-spacing: 2px;
+	border-style: outset;
+	border-color: rgb(255, 215, 0);
+	border-collapse: separate;
+	background-color: white;
+}
+.bokreview-item {
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}

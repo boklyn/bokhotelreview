@@ -59,7 +59,7 @@ class Bok_Review {
 
 
 	public function load_css() {	
-		wp_enqueue_style( 'mr-frontend-style', plugins_url( 'style' . DIRECTORY_SEPARATOR . 'bokreview.css', __FILE__ ) );
+		wp_enqueue_style( 'bokreview-style', plugins_url( 'style' . DIRECTORY_SEPARATOR . 'bokreview.css', __FILE__ ) );
 
 	}
 	

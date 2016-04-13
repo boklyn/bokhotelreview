@@ -135,10 +135,10 @@ class Bok_Review_API {
 				if ( $use_custom_star_images ) {
 					$template_part_name = 'custom-star-images';
 				}
-				echo "<tr><td>";
+				echo "<tr><td><i>";
 				echo $review_ratings_row->name;
-				echo ":</td><td>";
-				echo $review_ratings_row->star_level;
+				echo ":</i></td><td><div class=\"bokreview-item\">";
+				echo $review_ratings_row->star_level."/5";
 				/*mr_get_template_part( 'bokrating-result', $template_part_name, true, array( 
 					'max_stars' => 5, 
 					'star_result' => $review_ratings_row->star_level,
@@ -146,11 +146,13 @@ class Bok_Review_API {
 					'image_height' => $image_height,
 					'image_width' => $image_width
 				) );*/
-				echo "</td></tr>";
+				echo "</div></td></tr>";
 				if(!is_null($review_ratings_row->notes)){
-					echo "<tr><td>Notes: ";
+					echo "<td><table cellpadding\"20\"><tr><td><img src=\"";
+					echo plugins_url( '..' . DIRECTORY_SEPARATOR . 'imgs' . DIRECTORY_SEPARATOR . 'NotesIcon.png' , __FILE__ );
+					echo "\" alt=\"\" border=0 height=25 width=25 /></td><td>";
 					echo $review_ratings_row->notes;
-					echo "</td></tr>";
+					echo "</td></tr></table></td>";
 				}
 			}			
 		}
